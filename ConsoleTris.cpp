@@ -98,7 +98,7 @@ class bgPiece
     int bgBlock[12];
     int bgLayer, bgCycles;
 
-    
+
 
     void bgBuildBlock(int passedBlock[8], int x);
 public:
@@ -291,7 +291,7 @@ int main()
     drawBoard();
 
     frameTick = false;
-    
+
 
     auto lastFrame = std::chrono::high_resolution_clock::now();
     auto thisFrame = std::chrono::high_resolution_clock::now();
@@ -325,10 +325,10 @@ int main()
 
         checkControls();
 
-/*        if (GetAsyncKeyState((unsigned short)'R') & 0x8000)
-        {
-            spawnBlock = true;
-        }*/
+        /*        if (GetAsyncKeyState((unsigned short)'R') & 0x8000)
+                {
+                    spawnBlock = true;
+                }*/
 
         if (frameTick && gameState == 1)
         {
@@ -373,7 +373,7 @@ int main()
 
             if (gameTicksTillDrop < 1 && !fastDrop || fastDropTicks < 1 && fastDrop || currentDifficulty < FASTDROPSPEED && gameTicksTillDrop < 1)
             {
-                
+
                 checkBlocks(0, -1);
                 if (wouldClip == true)
                 {
@@ -385,8 +385,8 @@ int main()
                     spawnBlock = true;
                     fastDropHeld = true;
                     clearLines();
-                    
-                    
+
+
                 }
                 else
                 {
@@ -583,7 +583,7 @@ int main()
             std::cout << boardImage;
 
             clearControls();
-            
+
         }
 
 
@@ -606,12 +606,12 @@ void clearBoard()
         }
     }
 
-    
+
     gameTicksTillDrop = currentDifficulty;
     spawnBlock = true;
     nextBlock = rand() % 7;
     wouldClip = false;
-    
+
     gameOverScreenCounter = 0;
     score = 0;
     totalLinesCleared = 0;
@@ -674,7 +674,7 @@ void drawBoard()
                 }
 
             }
-            else if (y < ((gameOverScreenCounter - 30)/5))
+            else if (y < ((gameOverScreenCounter - 30) / 5))
             {
 
                 if (gameOverScreenCounter == 160 && y == 16 && x > 0 && x < 9)
@@ -755,9 +755,8 @@ void drawBoard()
                 {
                     boardImage += "XX";
                 }
-
             }*/
-            else if (x == block[0] && y == block[1] || x == block[2] && y == block[3] || x == block[4] && y == block[5]|| x == block[6] && y == block[7])
+            else if (x == block[0] && y == block[1] || x == block[2] && y == block[3] || x == block[4] && y == block[5] || x == block[6] && y == block[7])
             {
                 boardImage += "[]";
             }
@@ -769,7 +768,7 @@ void drawBoard()
             {
                 boardImage += "  ";
             }
-            
+
         }
         if (y == 19)
         {
@@ -778,7 +777,7 @@ void drawBoard()
         else if (y == 18)
         {
             boardImage += "#------------";
-        } 
+        }
         else if (y == 17)
         {
             boardImage += "#            ";
@@ -787,30 +786,30 @@ void drawBoard()
         {
             switch (nextBlock)
             {
-                case 0:
-                    boardImage += "#    [][]    ";
-                    break;
-                case 1:
-                    boardImage += "#  [][][][]  ";
-                    break;
-                case 2:
-                    boardImage += "#  [][][]    ";
-                    break;
-                case 3:
-                    boardImage += "#  [][][]    ";
-                    break;
-                case 4:
-                    boardImage += "#  [][][]    ";
-                    break;
-                case 6:
-                    boardImage += "#  [][]      ";
-                    break;
-                case 5:
-                    boardImage += "#    [][]    ";
-                    break;
-                default:
-                    boardImage += "#            ";
-                    break;
+            case 0:
+                boardImage += "#    [][]    ";
+                break;
+            case 1:
+                boardImage += "#  [][][][]  ";
+                break;
+            case 2:
+                boardImage += "#  [][][]    ";
+                break;
+            case 3:
+                boardImage += "#  [][][]    ";
+                break;
+            case 4:
+                boardImage += "#  [][][]    ";
+                break;
+            case 6:
+                boardImage += "#  [][]      ";
+                break;
+            case 5:
+                boardImage += "#    [][]    ";
+                break;
+            default:
+                boardImage += "#            ";
+                break;
             }
         }
         else if (y == 15)
@@ -1019,7 +1018,7 @@ void drawBoard()
                 boardImage += std::to_string(totalLinesCleared);
                 boardImage += " ";
             }
-            
+
         }
         else if (y == 2)
         {
@@ -1028,7 +1027,7 @@ void drawBoard()
         else if (y == 1)
         {
             boardImage += "#  LEVEL AT  ";
-        } 
+        }
         else if (y == 0)
         {
             if (nextLevel < 10)
@@ -1215,7 +1214,7 @@ void checkBlocks(int x, int y)
 
 }
 
-void checkRL ()
+void checkRL()
 {
     if (right && left)
     {
@@ -1256,35 +1255,35 @@ void createBlock()
     currentBlock = nextBlock;
     nextBlock = rand() % 7;
     spawnBlock = false;
-    
+
     switch (currentBlock)
     {
-        case 0:
-            buildBlock(square, 4, 18);
-            break;
-        case 1:
-            buildBlock(line, 3, 18);
-            buildLineFixer();
-            lineRotationState = 0;
-            break;
-        case 2:
-            buildBlock(lBlock, 3, 18);
-            break;
-        case 3:
-            buildBlock(reverseLBlock, 3, 18);
-            break;
-        case 4:
-            buildBlock(tBlock, 3, 18);
-            break;
-        case 5:
-            buildBlock(squigly, 3, 18);
-            break;
-        case 6:
-            buildBlock(reverseSquigly, 3, 18);
-            break;
-        default:
-            buildBlock(nullBlock, 0, 19);
-            break;
+    case 0:
+        buildBlock(square, 4, 18);
+        break;
+    case 1:
+        buildBlock(line, 3, 18);
+        buildLineFixer();
+        lineRotationState = 0;
+        break;
+    case 2:
+        buildBlock(lBlock, 3, 18);
+        break;
+    case 3:
+        buildBlock(reverseLBlock, 3, 18);
+        break;
+    case 4:
+        buildBlock(tBlock, 3, 18);
+        break;
+    case 5:
+        buildBlock(squigly, 3, 18);
+        break;
+    case 6:
+        buildBlock(reverseSquigly, 3, 18);
+        break;
+    default:
+        buildBlock(nullBlock, 0, 19);
+        break;
 
     }
 
@@ -1331,7 +1330,7 @@ void moveBlock(int x, int y)
     }
 
 
-    
+
 }
 void spawnDropShadow()
 {
@@ -1347,7 +1346,7 @@ void spawnDropShadow()
         }
     }
 
-    
+
 
 
 }
@@ -1453,7 +1452,7 @@ void rotationType1()
                     block[i] += 1;
                     block[i + 1] += 1;
                 }
-            }   
+            }
 
         }
 
@@ -1513,17 +1512,17 @@ void rotationType1()
                 }
             }
 
-        }  
-        
+        }
+
         blockPopOut1();
     }
 
     if (wouldClip)
-    { 
+    {
         for (int i = 0; i < 8; i++)
         {
             block[i] = blockDataHold[i];
-        }   
+        }
     }
 }
 
@@ -2130,7 +2129,7 @@ void drawMenuScreen()
         {
             boardImage += " ";
         }
-        boardImage+= "#";
+        boardImage += "#";
     }
     boardImage += "##################################";
     for (int i = 0; i < endLines; i++)
@@ -2233,7 +2232,7 @@ void drawMCTLogo()
     menuDrawing[17][10] = 'N';
     menuDrawing[19][10] = '2';
     menuDrawing[20][10] = '.';
-    menuDrawing[21][10] = '1';
+    menuDrawing[21][10] = '2';
 
     menuDrawing[10][9] = '=';
     menuDrawing[11][9] = '=';
@@ -2395,7 +2394,7 @@ void drawMCTLogo()
         menuDrawing[12][3] = '(';
         menuDrawing[20][3] = ')';
     }
-    
+
     menuDrawing[12][1] = 'Q';
     menuDrawing[13][1] = 'U';
     menuDrawing[14][1] = 'I';
@@ -2455,7 +2454,7 @@ void checkMenuControls()
         clearControls();
         menuItem = 0;
     }
-   
+
     clearControls();
 }
 
@@ -2517,7 +2516,7 @@ void drawControlScreen()
     menuDrawing[4][12] = 'W';
     menuDrawing[5][12] = ']';
     menuDrawing[6][12] = '=';
-    menuDrawing[7][12] = 'D';
+    menuDrawing[7][12] = 'H';
     menuDrawing[8][12] = 'A';
     menuDrawing[9][12] = 'R';
     menuDrawing[10][12] = 'D';
@@ -2627,7 +2626,7 @@ void drawControlScreen()
     menuDrawing[11][1] = 'N';
     menuDrawing[12][1] = 'U';
     menuDrawing[13][1] = '.';
-    
+
 }
 
 void checkOptionsControls()
@@ -2691,7 +2690,7 @@ void checkOptionsControls()
     {
         endLines--;
     }
-   if (menuItem == 4 && right)
+    if (menuItem == 4 && right)
     {
         difficultyType = 1;
     }
@@ -2699,7 +2698,7 @@ void checkOptionsControls()
     {
         difficultyType = 0;
     }
-   
+
     clearControls();
 }
 
@@ -2837,14 +2836,14 @@ void drawOptionsScreen()
     menuDrawing[12][4] = 'T';
     menuDrawing[13][4] = 'V';
     menuDrawing[14][4] = '1';
-    
+
     menuDrawing[17][4] = 'T';
     menuDrawing[18][4] = 'E';
     menuDrawing[19][4] = 'T';
     menuDrawing[20][4] = 'R';
     menuDrawing[21][4] = 'I';
     menuDrawing[22][4] = 'S';
-    
+
     if (menuItem == 4)
     {
         menuDrawing[11][5] = '(';
@@ -2940,39 +2939,39 @@ char numToChar(int numby, int charPoint)
 
     switch (numby / charPoint)
     {
-        case 0:
-            return '0';
-            break;
-        case 1:
-            return '1';
-            break;
-        case 2:
-            return '2';
-            break;
-        case 3:
-            return '3';
-            break;
-        case 4:
-            return '4';
-            break;
-        case 5:
-            return '5';
-            break;
-        case 6:
-            return '6';
-            break;
-        case 7:
-            return '7';
-            break;
-        case 8:
-            return '8';
-            break;
-        case 9:
-            return '9';
-            break;
-        default:
-            return '?';
-            break;
+    case 0:
+        return '0';
+        break;
+    case 1:
+        return '1';
+        break;
+    case 2:
+        return '2';
+        break;
+    case 3:
+        return '3';
+        break;
+    case 4:
+        return '4';
+        break;
+    case 5:
+        return '5';
+        break;
+    case 6:
+        return '6';
+        break;
+    case 7:
+        return '7';
+        break;
+    case 8:
+        return '8';
+        break;
+    case 9:
+        return '9';
+        break;
+    default:
+        return '?';
+        break;
     }
 
 
